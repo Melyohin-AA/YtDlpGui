@@ -1,0 +1,42 @@
+﻿<Window x:Class="YtDlpGui.CheckForUpdatesWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="clr-namespace:YtDlpGui"
+		mc:Ignorable="d"
+		Title="yt-dlp updates" Height="200" Width="400">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="50"/>
+			<RowDefinition/>
+			<RowDefinition Height="25"/>
+		</Grid.RowDefinitions>
+		<Grid Grid.Row="0" Width="200">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition/>
+				<RowDefinition/>
+			</Grid.RowDefinitions>
+			<Label Grid.Row="0" Grid.Column="0" Content="Local version:"/>
+			<TextBox x:Name="localVersionTextBox" Grid.Row="0" Grid.Column="1" IsReadOnly="True"/>
+			<Label Grid.Row="1" Grid.Column="0" Content="Latest release:"/>
+			<TextBox x:Name="latestReleaseTextBox" Grid.Row="1" Grid.Column="1" IsReadOnly="True"/>
+		</Grid>
+		<Label x:Name="statusLabel" FontSize="16" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+		<Grid Grid.Row="2" Width="120">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition/>
+				<ColumnDefinition Width="25"/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+			<Button x:Name="updateButton" Grid.Column="0" Content="Update" IsEnabled="False"
+					Click="UpdateButton_Click" Visibility="Hidden"/>
+			<Button x:Name="duButton" Grid.Column="1" Content="-U" Click="DUButton_Click"/>
+			<Button x:Name="closeButton" Grid.Column="2" Content="Close" Click="CloseButton_Click"/>
+		</Grid>
+	</Grid>
+</Window>

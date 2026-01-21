@@ -1,0 +1,80 @@
+﻿<Window x:Class="YtDlpGui.DownloadWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="clr-namespace:YtDlpGui"
+		mc:Ignorable="d"
+		Title="DownloadWindow" Height="450" Width="800">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition Height="25"/>
+		</Grid.RowDefinitions>
+		<Grid Grid.Row="0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="125"/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="25"/>
+				<RowDefinition Height="25"/>
+				<RowDefinition Height="25"/>
+				<RowDefinition Height="25"/>
+				<RowDefinition Height="25"/>
+				<RowDefinition Height="25"/>
+				<RowDefinition Height="25"/>
+			</Grid.RowDefinitions>
+			<Label Grid.Row="0" Grid.Column="0" Content="Source URL:"/>
+			<TextBox x:Name="sourceUrlTextBox" Grid.Row="0" Grid.Column="1"/>
+			<Label Grid.Row="1" Grid.Column="0" Content="Target"/>
+			<ComboBox x:Name="targetComboBox" Grid.Row="1" Grid.Column="1" Width="120" SelectedIndex="0"
+					HorizontalAlignment="Left">
+				<ComboBoxItem Content="Video + Audio"/>
+				<ComboBoxItem Content="Video only"/>
+				<ComboBoxItem Content="Audio only"/>
+				<ComboBoxItem Content="Storyboard"/>
+			</ComboBox>
+			<CheckBox x:Name="useCookiesCheckBox" Grid.Row="2" Grid.Column="0" Content="Use cookies"/>
+			<Grid Grid.Row="2" Grid.Column="1" IsEnabled="{Binding ElementName=useCookiesCheckBox, Path=IsChecked}">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition/>
+					<ColumnDefinition Width="120"/>
+				</Grid.ColumnDefinitions>
+				<TextBox x:Name="cookieFileTextBox" Grid.Column="0" IsReadOnly="True"/>
+				<Button x:Name="selectCookieFileButton" Grid.Column="1" Content="Select file…"
+						Click="SelectCookieFileButton_Click"/>
+			</Grid>
+			<CheckBox x:Name="isPlaylistCheckBox" Grid.Row="3" Grid.Column="0" Content="Download playlist"/>
+			<Grid Grid.Row="3" Grid.Column="1" IsEnabled="{Binding ElementName=isPlaylistCheckBox, Path=IsChecked}">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="120"/>
+					<ColumnDefinition Width="25"/>
+					<ColumnDefinition Width="120"/>
+				</Grid.ColumnDefinitions>
+				<Label Grid.Column="0" Content="How many digits?"/>
+				<Label Grid.Column="1" Content="{Binding ElementName=digitNumberSlider, Path=Value}"/>
+				<Slider x:Name="digitNumberSlider" Grid.Column="2" Minimum="1" Maximum="5" SmallChange="1"
+						TickPlacement="TopLeft" IsSnapToTickEnabled="True"/>
+			</Grid>
+			<CheckBox x:Name="downloadSectionsCheckBox" Grid.Row="4" Grid.Column="0" Content="Download sections"/>
+			<TextBox x:Name="downloadSectionsTextBox" Grid.Row="4" Grid.Column="1" Width="200"
+					HorizontalAlignment="Left"
+					IsEnabled="{Binding ElementName=downloadSectionsCheckBox, Path=IsChecked}"/>
+			<CheckBox x:Name="writeThumbnailCheckBox" Grid.Row="5" Grid.Column="0" Content="Write thumbnail"/>
+			<CheckBox x:Name="writeSubsCheckBox" Grid.Row="5" Grid.Column="1" Content="Write subs"/>
+			<CheckBox x:Name="ejsCheckBox" Grid.Row="6" Grid.Column="0" Content="Enable EJS"/>
+			<TextBox Grid.Row="6" Grid.Column="1" IsReadOnly="True">https://github.com/yt-dlp/yt-dlp/wiki/EJS</TextBox>
+		</Grid>
+		<Grid Grid.Row="1" Width="190">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="60"/>
+				<ColumnDefinition Width="90"/>
+				<ColumnDefinition Width="40"/>
+			</Grid.ColumnDefinitions>
+			<Button Grid.Column="0" Content="Download" Click="DownloadButton_Click"/>
+			<Button Grid.Column="1" Content="Check formats" Click="CheckFormatsButton_Click"/>
+			<Button Grid.Column="2" Content="Close" Click="CloseButton_Click"/>
+		</Grid>
+	</Grid>
+</Window>
